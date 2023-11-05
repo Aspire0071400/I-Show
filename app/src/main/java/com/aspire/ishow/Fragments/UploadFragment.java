@@ -1,4 +1,4 @@
-package com.aspire.ishow;
+package com.aspire.ishow.Fragments;
 
 import android.os.Bundle;
 
@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aspire.ishow.R;
 
-public class ProfileFragment extends Fragment {
+
+public class UploadFragment extends Fragment {
 
 
 
@@ -17,6 +19,6 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return inflater.inflate(R.layout.fragment_upload, container, false);
     }
 }
