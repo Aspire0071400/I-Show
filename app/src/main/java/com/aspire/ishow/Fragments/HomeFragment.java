@@ -11,7 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aspire.ishow.Adapter.FeedsAdapter;
 import com.aspire.ishow.Adapter.StoriesAdapter;
+import com.aspire.ishow.Model.FeedsModel;
 import com.aspire.ishow.Model.StoriesModel;
 import com.aspire.ishow.R;
 
@@ -19,8 +21,9 @@ import java.util.ArrayList;
 
 
 public class HomeFragment extends Fragment {
-    RecyclerView stories_recycler;
+    RecyclerView stories_recycler,feeds_recycler;
     ArrayList<StoriesModel> storyList;
+    ArrayList<FeedsModel> feedsList;
     public HomeFragment(){}
 
     @Override
@@ -46,6 +49,21 @@ public class HomeFragment extends Fragment {
         stories_recycler.setLayoutManager(linearLayoutManager);
         stories_recycler.setNestedScrollingEnabled(false);
         stories_recycler.setAdapter(adapter);
+
+        feeds_recycler = view.findViewById(R.id.feeds_recycler);
+        feedsList = new ArrayList<>();
+        feedsList.add(new FeedsModel(R.drawable.stories,R.drawable.story,R.drawable.outline_bookmark_border_24,"Varun","App Dev","100","50","35"));
+        feedsList.add(new FeedsModel(R.drawable.stories,R.drawable.story,R.drawable.outline_bookmark_border_24,"Varun","App Dev","100","50","35"));
+        feedsList.add(new FeedsModel(R.drawable.stories,R.drawable.story,R.drawable.outline_bookmark_border_24,"Varun","App Dev","100","50","35"));
+        feedsList.add(new FeedsModel(R.drawable.stories,R.drawable.story,R.drawable.outline_bookmark_border_24,"Varun","App Dev","100","50","35"));
+        feedsList.add(new FeedsModel(R.drawable.stories,R.drawable.story,R.drawable.outline_bookmark_border_24,"Varun","App Dev","100","50","35"));
+        feedsList.add(new FeedsModel(R.drawable.stories,R.drawable.story,R.drawable.outline_bookmark_border_24,"Varun","App Dev","100","50","35"));
+
+        FeedsAdapter adapter1 = new FeedsAdapter(feedsList,getContext());
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext());
+        feeds_recycler.setLayoutManager(linearLayoutManager1);
+        feeds_recycler.setNestedScrollingEnabled(false);
+        feeds_recycler.setAdapter(adapter1);
 
         return view;
     }

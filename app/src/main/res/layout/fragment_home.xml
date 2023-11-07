@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content">
 
                         <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/imageViewAddStory_back"
+                            android:id="@+id/feeds_post_iv"
                             android:layout_width="130dp"
                             android:layout_height="100dp"
                             android:layout_marginStart="16dp"
@@ -90,10 +90,10 @@
                             android:layout_height="70dp"
                             android:scaleType="fitXY"
                             android:src="@drawable/baseline_add_circle_24"
-                            app:layout_constraintBottom_toBottomOf="@+id/imageViewAddStory_back"
-                            app:layout_constraintEnd_toEndOf="@+id/imageViewAddStory_back"
-                            app:layout_constraintStart_toStartOf="@+id/imageViewAddStory_back"
-                            app:layout_constraintTop_toTopOf="@+id/imageViewAddStory_back" />
+                            app:layout_constraintBottom_toBottomOf="@+id/feeds_post_iv"
+                            app:layout_constraintEnd_toEndOf="@+id/feeds_post_iv"
+                            app:layout_constraintStart_toStartOf="@+id/feeds_post_iv"
+                            app:layout_constraintTop_toTopOf="@+id/feeds_post_iv" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -117,12 +117,14 @@
                 app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/feeds_recycler"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_height="600dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 

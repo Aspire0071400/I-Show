@@ -4,4 +4,126 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ProfileFragment" />
+    tools:context=".Fragments.ProfileFragment">
+
+
+    <ImageView
+        android:id="@+id/profile_wide_iv"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/story" />
+
+    <View
+        android:id="@+id/transparent_layer"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:background="#60353535"
+        app:layout_constraintBottom_toBottomOf="@id/profile_wide_iv"
+        app:layout_constraintEnd_toEndOf="@id/profile_wide_iv"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/profile_wide_iv"
+        app:layout_constraintTop_toTopOf="@id/profile_wide_iv"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_pic_iv"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="150dp"
+        android:src="@drawable/usericon"
+        app:civ_border_color="@color/white"
+        app:civ_border_width="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/transparent_layer" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_pic_iv"
+        app:layout_constraintEnd_toEndOf="@+id/profile_pic_iv"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="@+id/profile_pic_iv"
+        app:layout_constraintTop_toTopOf="@+id/profile_pic_iv"
+        app:layout_constraintVertical_bias="0.9"
+        tools:srcCompat="@drawable/baseline_verified_24" />
+
+    <TextView
+        android:id="@+id/profile_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:text="UserName"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="@+id/profile_pic_iv"
+        app:layout_constraintStart_toStartOf="@+id/profile_pic_iv"
+        app:layout_constraintTop_toBottomOf="@+id/profile_pic_iv" />
+
+    <TextView
+        android:id="@+id/profile_bio_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Profession"
+        app:layout_constraintEnd_toEndOf="@+id/profile_name_tv"
+        app:layout_constraintStart_toStartOf="@+id/profile_name_tv"
+        app:layout_constraintTop_toBottomOf="@+id/profile_name_tv" />
+
+    <ImageView
+        android:id="@+id/profile_comment_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/msg"
+        app:layout_constraintEnd_toEndOf="@+id/profile_bio_tv"
+        app:layout_constraintStart_toStartOf="@+id/profile_bio_tv"
+        app:layout_constraintTop_toBottomOf="@+id/profile_bio_tv" />
+
+    <ImageView
+        android:id="@+id/profile_add_friend_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="24dp"
+        android:src="@drawable/contact"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_comment_iv"
+        app:layout_constraintEnd_toStartOf="@+id/profile_comment_iv"
+        app:layout_constraintTop_toTopOf="@+id/profile_comment_iv" />
+
+    <ImageView
+        android:id="@+id/profile_call_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:src="@drawable/call"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_comment_iv"
+        app:layout_constraintStart_toEndOf="@+id/profile_comment_iv"
+        app:layout_constraintTop_toTopOf="@+id/profile_comment_iv" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="391dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="469dp" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
