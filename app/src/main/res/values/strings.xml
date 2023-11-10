@@ -13,4 +13,8 @@
     <string name="user_mentioned_you_in_a_comment">User Mentioned you in a comment</string>
     <string name="welcome_to_i_show">Welcome To I-Show</string>
     <string name="stay_connected_with_your_homies">Stay connected with your Homies</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="don_t_have_an_account">Don\'t have an Account? <b>Register</b></string>
 </resources>
