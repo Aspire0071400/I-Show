@@ -116,8 +116,7 @@
             android:id="@+id/register_bio_tied"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Profession-Bio"
-            android:textColor="@color/textback"
+            android:hint="@string/profession_bio"
             android:inputType="text"/>
     </com.google.android.material.textfield.TextInputLayout>
 
