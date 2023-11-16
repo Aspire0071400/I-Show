@@ -2,21 +2,18 @@ package com.aspire.ishow;
 
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.View;
-import android.window.OnBackInvokedDispatcher;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.aspire.ishow.databinding.ActivityMainBinding;
 import com.aspire.ishow.Fragments.HomeFragment;
 import com.aspire.ishow.Fragments.NotificationFragment;
 import com.aspire.ishow.Fragments.ProfileFragment;
 import com.aspire.ishow.Fragments.SearchFragment;
 import com.aspire.ishow.Fragments.UploadFragment;
+import com.aspire.ishow.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding;

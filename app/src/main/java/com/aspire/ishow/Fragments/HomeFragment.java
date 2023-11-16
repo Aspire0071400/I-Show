@@ -1,15 +1,14 @@
 package com.aspire.ishow.Fragments;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.aspire.ishow.Adapter.FeedsAdapter;
 import com.aspire.ishow.Adapter.StoriesAdapter;
@@ -45,7 +44,7 @@ public class HomeFragment extends Fragment {
         storyList.add(new StoriesModel(R.drawable.story,R.drawable.live2,R.drawable.usericon,"varun"));
 
         StoriesAdapter adapter = new StoriesAdapter(storyList,getContext());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+       LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         stories_recycler.setLayoutManager(linearLayoutManager);
         stories_recycler.setNestedScrollingEnabled(false);
         stories_recycler.setAdapter(adapter);

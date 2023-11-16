@@ -9,25 +9,26 @@
 
 
     <ImageView
-        android:id="@+id/profile_wide_iv"
+        android:id="@+id/profile_cover_iv"
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/story"
+        android:src="@drawable/coverplaceholder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:importantForAccessibility="no" />
 
     <View
         android:id="@+id/transparent_layer"
         android:layout_width="match_parent"
         android:layout_height="230dp"
         android:background="#60353535"
-        app:layout_constraintBottom_toBottomOf="@id/profile_wide_iv"
-        app:layout_constraintEnd_toEndOf="@id/profile_wide_iv"
+        app:layout_constraintBottom_toBottomOf="@id/profile_cover_iv"
+        app:layout_constraintEnd_toEndOf="@id/profile_cover_iv"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/profile_wide_iv"
-        app:layout_constraintTop_toTopOf="@id/profile_wide_iv"
+        app:layout_constraintStart_toStartOf="@+id/profile_cover_iv"
+        app:layout_constraintTop_toTopOf="@id/profile_cover_iv"
         app:layout_constraintVertical_bias="1.0" />
 
 
@@ -37,7 +38,7 @@
         android:layout_height="120dp"
         android:layout_marginTop="150dp"
         android:elevation="10dp"
-        android:src="@drawable/usericon"
+        android:src="@drawable/profileplaceholder"
         app:civ_border_color="@color/white"
         app:civ_border_width="5dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,16 +47,12 @@
         app:layout_constraintTop_toTopOf="@id/transparent_layer" />
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/profile_pic_upload_iv"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/profile_pic_iv"
-        app:layout_constraintEnd_toEndOf="@+id/profile_pic_iv"
-        app:layout_constraintHorizontal_bias="0.9"
-        app:layout_constraintStart_toStartOf="@+id/profile_pic_iv"
-        app:layout_constraintTop_toTopOf="@+id/profile_pic_iv"
-        app:layout_constraintVertical_bias="0.9"
-        tools:srcCompat="@drawable/baseline_verified_24" />
+        app:layout_constraintStart_toEndOf="@+id/profile_pic_iv"
+        app:srcCompat="@drawable/upload" />
 
     <TextView
         android:id="@+id/profile_name_tv"
@@ -277,5 +274,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <ImageView
+        android:id="@+id/profile_cover_upload_iv"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/upload"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_cover_iv"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

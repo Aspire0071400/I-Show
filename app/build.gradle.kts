@@ -42,6 +42,8 @@ dependencies {
     implementation("com.google.firebase:firebase-database")
     implementation ("com.google.firebase:firebase-core:21.1.1")
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-storage")
+    implementation("com.squareup.picasso:picasso:2.8")
 
     testImplementation("junit:junit:4.13.2")
     implementation("de.hdodenhof:circleimageview:3.1.0")
