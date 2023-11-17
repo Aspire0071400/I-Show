@@ -4,22 +4,21 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aspire.ishow.Model.ProfileHomiesModel;
+import com.aspire.ishow.Model.HomiesModel;
 import com.aspire.ishow.R;
 
 import java.util.ArrayList;
 
-public class ProfileHomiesAdapter extends RecyclerView.Adapter<ProfileHomiesAdapter.viewHolder> {
+public class HomiesAdapter extends RecyclerView.Adapter<HomiesAdapter.viewHolder> {
 
-    ArrayList<ProfileHomiesModel> homieList;
+    ArrayList<HomiesModel> homieList;
     Context context;
 
-    public ProfileHomiesAdapter(ArrayList<ProfileHomiesModel> homieList, Context context) {
+    public HomiesAdapter(ArrayList<HomiesModel> homieList, Context context) {
         this.homieList = homieList;
         this.context = context;
     }
@@ -33,8 +32,8 @@ public class ProfileHomiesAdapter extends RecyclerView.Adapter<ProfileHomiesAdap
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        ProfileHomiesModel model3  = homieList.get(position);
-        holder.profileHomieDpIv.setImageResource(model3.getProfileHomieDp());
+        HomiesModel model3  = homieList.get(position);
+
 
     }
 
@@ -45,10 +44,10 @@ public class ProfileHomiesAdapter extends RecyclerView.Adapter<ProfileHomiesAdap
 
     public class viewHolder extends RecyclerView.ViewHolder{
 
-        ImageView profileHomieDpIv;
+
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            profileHomieDpIv = itemView.findViewById(R.id.profile_homie_dp_iv);
+
         }
     }
 }

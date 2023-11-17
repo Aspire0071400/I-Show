@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aspire.ishow.Adapter.ProfileHomiesAdapter;
-import com.aspire.ishow.Model.ProfileHomiesModel;
+import com.aspire.ishow.Adapter.HomiesAdapter;
+import com.aspire.ishow.Model.HomiesModel;
 import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,9 +38,9 @@ public class ProfileFragment extends Fragment {
     FirebaseAuth auth;
     FirebaseStorage storage;
     FirebaseDatabase db;
-    ArrayList<ProfileHomiesModel> homieList;
+    ArrayList<HomiesModel> homieList;
     RecyclerView profileHomiesRv;
-    TextView profile_name_tv,profile_bio_tv,profile_about_tv;
+    TextView profile_name_tv, profile_profession_tv,profile_about_tv;
     ImageView profile_cover_upload_iv,profile_cover_iv,profile_pic_iv,profile_pic_upload_iv;
 
     @Override
@@ -61,7 +61,7 @@ public class ProfileFragment extends Fragment {
         profile_cover_iv = view.findViewById(R.id.profile_cover_iv);
         profileHomiesRv = view.findViewById(R.id.profile_homies_rv);
         profile_name_tv = view.findViewById(R.id.profile_name_tv);
-        profile_bio_tv = view.findViewById(R.id.profile_bio_tv);
+        profile_profession_tv = view.findViewById(R.id.profile_profession_tv);
         profile_about_tv = view.findViewById(R.id.profile_about_tv);
         profile_pic_iv = view.findViewById(R.id.profile_pic_iv);
         profile_pic_upload_iv = view.findViewById(R.id.profile_pic_upload_iv);
@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
                     Picasso.get().load(user.getProfile()).placeholder(R.drawable.profileplaceholder).into(profile_pic_iv);
 
                     profile_name_tv.setText(user.getName());
-                    profile_bio_tv.setText(user.getBio());
+                    profile_profession_tv.setText(user.getProfession());
                     profile_about_tv.setText(user.getAbout());
 
                 }
@@ -90,16 +90,31 @@ public class ProfileFragment extends Fragment {
 
         homieList = new ArrayList<>();
 
-        homieList.add(new ProfileHomiesModel(R.drawable.friends));
-        homieList.add(new ProfileHomiesModel(R.drawable.friends));
-        homieList.add(new ProfileHomiesModel(R.drawable.friends));
-        homieList.add(new ProfileHomiesModel(R.drawable.friends));
-        homieList.add(new ProfileHomiesModel(R.drawable.friends));
 
-        ProfileHomiesAdapter adapter3 = new ProfileHomiesAdapter(homieList,getContext());
+        HomiesAdapter adapter3 = new HomiesAdapter(homieList,getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         profileHomiesRv.setLayoutManager(linearLayoutManager);
         profileHomiesRv.setAdapter(adapter3);
+
+        db.getReference().child("Users")
+                        .child(auth.getUid())
+                                .child("followers").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            HomiesModel homiesModel = dataSnapshot.getValue(HomiesModel.class);
+                            homieList.add(homiesModel);
+
+                        }
+                        adapter3.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
         profile_cover_upload_iv.setOnClickListener(new View.OnClickListener() {
             @Override

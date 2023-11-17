@@ -23,7 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth auth;
     FirebaseDatabase database;
 
-    TextInputEditText register_name_tied,register_bio_tied,register_email_tied,register_pass_tied,register_about_tied;
+    TextInputEditText register_name_tied, register_profession_tied,register_email_tied,register_pass_tied,register_about_tied;
     Button register_btn;
     TextView register_to_login;
 
@@ -37,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         register_name_tied = findViewById(R.id.register_name_tied);
         register_pass_tied = findViewById(R.id.register_pass_tied);
-        register_bio_tied = findViewById(R.id.register_bio_tied);
+        register_profession_tied = findViewById(R.id.register_profession_tied);
         register_email_tied = findViewById(R.id.register_email_tied);
         register_btn = findViewById(R.id.register_btn);
         register_to_login = findViewById(R.id.register_to_login);
@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = register_email_tied.getText().toString(),
                         password = register_pass_tied.getText().toString(),
                         name = register_name_tied.getText().toString(),
-                        profession = register_bio_tied.getText().toString(),
+                        profession = register_profession_tied.getText().toString(),
                         about = register_about_tied.getText().toString();
 
                 if(email.isEmpty()){

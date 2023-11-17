@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/profile_pic_iv" />
 
     <TextView
-        android:id="@+id/profile_bio_tv"
+        android:id="@+id/profile_profession_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -86,9 +86,9 @@
         android:layout_marginTop="16dp"
         android:elevation="10dp"
         android:src="@drawable/msg"
-        app:layout_constraintEnd_toEndOf="@+id/profile_bio_tv"
-        app:layout_constraintStart_toStartOf="@+id/profile_bio_tv"
-        app:layout_constraintTop_toBottomOf="@+id/profile_bio_tv" />
+        app:layout_constraintEnd_toEndOf="@+id/profile_profession_tv"
+        app:layout_constraintStart_toStartOf="@+id/profile_profession_tv"
+        app:layout_constraintTop_toBottomOf="@+id/profile_profession_tv" />
 
     <ImageView
         android:id="@+id/profile_add_friend_iv"

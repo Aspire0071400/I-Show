@@ -42,7 +42,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
         holder.feeds_like_iv.setText(model.getLikes());
         holder.feeds_comment_iv.setText(model.getComment());
         holder.feeds_share_iv.setText(model.getShare());
-        holder.feeds_bio.setText(model.getBio());
+        holder.feeds_profession.setText(model.getProfession());
 
     }
 
@@ -54,7 +54,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
     public class viewholder extends RecyclerView.ViewHolder{
 
         ImageView feeds_image_dp,feeds_post_iv,feeds_savepost_iv,feeds_more_iv;
-        TextView feeds_username,feeds_bio,feeds_like_iv,feeds_comment_iv,feeds_share_iv;
+        TextView feeds_username, feeds_profession,feeds_like_iv,feeds_comment_iv,feeds_share_iv;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
@@ -64,7 +64,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
             feeds_savepost_iv = itemView.findViewById(R.id.feeds_savepost_iv);
             feeds_more_iv = itemView.findViewById(R.id.feeds_more_iv);
             feeds_username = itemView.findViewById(R.id.feeds_username);
-            feeds_bio = itemView.findViewById(R.id.feeds_bio);
+            feeds_profession = itemView.findViewById(R.id.feeds_profession);
             feeds_like_iv = itemView.findViewById(R.id.feeds_like_iv);
             feeds_comment_iv = itemView.findViewById(R.id.feeds_comment_iv);
             feeds_share_iv = itemView.findViewById(R.id.feeds_share_iv);

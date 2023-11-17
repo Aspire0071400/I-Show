@@ -12,10 +12,10 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -54,59 +54,32 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-            <HorizontalScrollView
-                android:id="@+id/horizontalScrollView"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:scrollbars="none"
+                android:layout_height="100dp"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view">
+                app:layout_constraintTop_toBottomOf="@+id/view">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/constraintLayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
 
-                        <com.makeramen.roundedimageview.RoundedImageView
-                            android:id="@+id/feeds_post_iv"
-                            android:layout_width="130dp"
-                            android:layout_height="100dp"
-                            android:layout_marginStart="16dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/stories"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:riv_border_color="#333333"
-                            app:riv_border_width="4dip"
-                            app:riv_corner_radius="20dip"
-                            app:riv_mutate_background="true" />
-
-                        <ImageView
-                            android:id="@+id/imageViewAddStory"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/baseline_add_circle_24"
-                            app:layout_constraintBottom_toBottomOf="@+id/feeds_post_iv"
-                            app:layout_constraintEnd_toEndOf="@+id/feeds_post_iv"
-                            app:layout_constraintStart_toStartOf="@+id/feeds_post_iv"
-                            app:layout_constraintTop_toTopOf="@+id/feeds_post_iv" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/stories_recycler"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="16dp" />
-                </LinearLayout>
-            </HorizontalScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/stories_recycler"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:overScrollMode="always"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/feeds_post_iv"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
             <View
                 android:id="@+id/view2"
@@ -117,18 +90,46 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/feeds_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/feeds_post_iv"
+                android:layout_width="130dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/stories"
+                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+                app:riv_border_color="#333333"
+                app:riv_border_width="4dip"
+                app:riv_corner_radius="20dip"
+                app:riv_mutate_background="true" />
+
+            <ImageView
+                android:id="@+id/imageViewAddStory"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/baseline_add_circle_24"
+                app:layout_constraintBottom_toBottomOf="@+id/feeds_post_iv"
+                app:layout_constraintEnd_toEndOf="@+id/feeds_post_iv"
+                app:layout_constraintStart_toStartOf="@+id/feeds_post_iv"
+                app:layout_constraintTop_toTopOf="@+id/feeds_post_iv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

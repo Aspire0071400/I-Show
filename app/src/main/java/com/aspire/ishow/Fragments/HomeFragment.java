@@ -39,9 +39,11 @@ public class HomeFragment extends Fragment {
 
         storyList = new ArrayList<>();
         storyList.add(new StoriesModel(R.drawable.story,R.drawable.live2,R.drawable.usericon,"varun"));
+        storyList.add(new StoriesModel(R.drawable.profileplaceholder,R.drawable.live2,R.drawable.usericon,"varun"));
         storyList.add(new StoriesModel(R.drawable.story,R.drawable.live2,R.drawable.usericon,"varun"));
         storyList.add(new StoriesModel(R.drawable.story,R.drawable.live2,R.drawable.usericon,"varun"));
-        storyList.add(new StoriesModel(R.drawable.story,R.drawable.live2,R.drawable.usericon,"varun"));
+        storyList.add(new StoriesModel(R.drawable.profileplaceholder,R.drawable.live2,R.drawable.usericon,"varun"));
+        storyList.add(new StoriesModel(R.drawable.profileplaceholder,R.drawable.live2,R.drawable.usericon,"varun"));
 
         StoriesAdapter adapter = new StoriesAdapter(storyList,getContext());
        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);

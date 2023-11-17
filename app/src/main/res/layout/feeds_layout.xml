@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -42,7 +41,7 @@
         app:layout_constraintVertical_bias="0.100000024" />
 
     <TextView
-        android:id="@+id/feeds_bio"
+        android:id="@+id/feeds_profession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profession, Bio"
@@ -60,7 +59,7 @@
         android:src="@drawable/story"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/feeds_bio"
+        app:layout_constraintTop_toBottomOf="@+id/feeds_profession"
         app:riv_border_color="#000000"
         app:riv_border_width="1dip"
         app:riv_corner_radius="15dip"

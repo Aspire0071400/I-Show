@@ -2,12 +2,24 @@ package com.aspire.ishow.Model;
 
 public class User {
     private String name;
+    private String userID;
     private String email;
     private String password;
-    private String bio;
+    private String profession;
     private String about;
     private String coverPhoto;
     private String profile;
+    private int followerCount;
+
+
+    public User() {
+    }
+
+    public int getFollowerCount() {
+        return followerCount;
+    }
+
+    public void setFollowerCount(int followerCount) {this.followerCount = followerCount; }
 
     public String getProfile() {
         return profile;
@@ -25,8 +37,6 @@ public class User {
         this.about = about;
     }
 
-    public User() {
-    }
 
     public String getCoverPhoto() {
         return coverPhoto;
@@ -44,12 +54,12 @@ public class User {
         this.name = name;
     }
 
-    public String getBio() {
-        return bio;
+    public String getProfession() {
+        return profession;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
 
     public String getEmail() {
@@ -68,17 +78,17 @@ public class User {
         this.password = password;
     }
 
+    public String getUserID() {return userID; }
+
+    public void setUserID(String userID) { this.userID = userID; }
 
 
-    public User(String name, String bio,String about, String email, String password) {
+    public User(String name, String profession, String about, String email, String password) {
         this.name = name;
-        this.bio = bio;
+        this.profession = profession;
         this.about = about;
         this.email = email;
         this.password = password;
 
     }
-
-
-
 }

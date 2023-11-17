@@ -3,7 +3,7 @@ package com.aspire.ishow.Model;
 public class FeedsModel {
     int profileDp,postImage,save;
     String username;
-    String bio;
+    String profession;
     String likes;
     String comment;
 
@@ -39,12 +39,12 @@ public class FeedsModel {
         this.username = username;
     }
 
-    public String getBio() {
-        return bio;
+    public String getProfession() {
+        return profession;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setProfession(String profession) {
+        this.profession = profession;
     }
 
     public String getLikes() {
@@ -74,12 +74,12 @@ public class FeedsModel {
     String share;
 
     public FeedsModel(int profileDp, int postImage, int save, String username,
-                      String bio, String likes, String comment, String share) {
+                      String profession, String likes, String comment, String share) {
         this.profileDp = profileDp;
         this.postImage = postImage;
         this.save = save;
         this.username = username;
-        this.bio = bio;
+        this.profession = profession;
         this.likes = likes;
         this.comment = comment;
         this.share = share;

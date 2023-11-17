@@ -152,7 +152,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/register_bio_tied"
+                    android:id="@+id/register_profession_tied"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/profession"
