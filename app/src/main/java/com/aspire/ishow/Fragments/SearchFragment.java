@@ -51,10 +51,12 @@ public class SearchFragment extends Fragment {
         db.getReference().child("Users").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                     User user = dataSnapshot.getValue(User.class);
                     user.setUserID(dataSnapshot.getKey());
-                    userList.add(user);
+                    if(!dataSnapshot.getKey().equals(FirebaseAuth.getInstance().getUid())){userList.add(user);
+                    }
                 }
                 adapter.notifyDataSetChanged();
 

@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
     FirebaseDatabase db;
     ArrayList<HomiesModel> homieList;
     RecyclerView profileHomiesRv;
-    TextView profile_name_tv, profile_profession_tv,profile_about_tv;
+    TextView profile_name_tv, profile_profession_tv,profile_about_tv,profile_followers_tv,profile_homies_tv,profile_photos_tv;
     ImageView profile_cover_upload_iv,profile_cover_iv,profile_pic_iv,profile_pic_upload_iv;
 
     @Override
@@ -65,6 +65,9 @@ public class ProfileFragment extends Fragment {
         profile_about_tv = view.findViewById(R.id.profile_about_tv);
         profile_pic_iv = view.findViewById(R.id.profile_pic_iv);
         profile_pic_upload_iv = view.findViewById(R.id.profile_pic_upload_iv);
+        profile_followers_tv = view.findViewById(R.id.profile_followers_tv);
+        profile_homies_tv = view.findViewById(R.id.profile_homies_tv);
+        profile_photos_tv = view.findViewById(R.id.profile_photos_tv);
 
         db.getReference().child("Users").child(auth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -77,6 +80,8 @@ public class ProfileFragment extends Fragment {
                     profile_name_tv.setText(user.getName());
                     profile_profession_tv.setText(user.getProfession());
                     profile_about_tv.setText(user.getAbout());
+
+                    profile_followers_tv.setText(user.getFollowerCount()+"");
 
                 }
             }
@@ -101,6 +106,7 @@ public class ProfileFragment extends Fragment {
                                 .child("followers").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        homieList.clear();
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()){
                             HomiesModel homiesModel = dataSnapshot.getValue(HomiesModel.class);
                             homieList.add(homiesModel);

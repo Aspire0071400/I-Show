@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aspire.ishow.Model.HomiesModel;
@@ -17,7 +18,10 @@ import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -47,35 +51,64 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder
         Picasso.get().load(user.getProfile()).placeholder(R.drawable.profileplaceholder).into(holder.searchPicIv);
         holder.searchNameTv.setText(user.getName());
         holder.searchProfessionTv.setText(user.getProfession());
-        holder.searchFollowBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                HomiesModel homiesModel = new HomiesModel();
-                homiesModel.setFollowedBy(FirebaseAuth.getInstance().getUid());
-                homiesModel.setFollowedAt(new Date().getTime());
 
-                FirebaseDatabase.getInstance().getReference()
-                        .child("Users")
-                        .child(user.getUserID())
-                        .child("followers")
-                        .child(FirebaseAuth.getInstance().getUid())
-                        .setValue(homiesModel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        FirebaseDatabase.getInstance().getReference()
-                                .child("Users")
-                                .child(user.getUserID())
-                                .child("followerCount")
-                                .setValue(user.getFollowerCount() + 1 ).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void unused) {
-                                        Toast.makeText(context,"You Followed" +user.getName(),Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                    }
-                });
+        FirebaseDatabase.getInstance().getReference()
+                .child("Users")
+                .child(user.getUserID())
+                .child("followers")
+                .child(FirebaseAuth.getInstance().getUid())
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    holder.searchFollowBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.following_btn_bg));
+                    holder.searchFollowBtn.setText("FOLLOWING");
+                    holder.searchFollowBtn.setTextColor(context.getResources().getColor(R.color.grey));
+                    holder.searchFollowBtn.setEnabled(false);
+                }else {
+                    holder.searchFollowBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            HomiesModel homiesModel = new HomiesModel();
+                            homiesModel.setFollowedBy(FirebaseAuth.getInstance().getUid());
+                            homiesModel.setFollowedAt(new Date().getTime());
+
+                            FirebaseDatabase.getInstance().getReference()
+                                    .child("Users")
+                                    .child(user.getUserID())
+                                    .child("followers")
+                                    .child(FirebaseAuth.getInstance().getUid())
+                                    .setValue(homiesModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            FirebaseDatabase.getInstance().getReference()
+                                                    .child("Users")
+                                                    .child(user.getUserID())
+                                                    .child("followerCount")
+                                                    .setValue(user.getFollowerCount() + 1 ).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            holder.searchFollowBtn.setBackground(ContextCompat.getDrawable(context,R.drawable.following_btn_bg));
+                                                            holder.searchFollowBtn.setText("FOLLOWING");
+                                                            holder.searchFollowBtn.setTextColor(context.getResources().getColor(R.color.grey));
+                                                            holder.searchFollowBtn.setEnabled(false);
+                                                            Toast.makeText(context,"You Followed" +user.getName(),Toast.LENGTH_SHORT).show();
+
+                                                        }
+                                                    });
+                                        }
+                                    });
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
 
     }
 
