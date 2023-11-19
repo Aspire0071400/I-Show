@@ -69,8 +69,10 @@ public class HomeFragment extends Fragment {
         db.getReference().child("posts").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                feedsList.clear();
                 for(DataSnapshot snapshot1 : snapshot.getChildren()){
                     FeedsModel feed = snapshot1.getValue(FeedsModel.class);
+                    feed.setPostId(snapshot1.getKey());
                     feedsList.add(feed);
                 }
                 adapter1.notifyDataSetChanged();

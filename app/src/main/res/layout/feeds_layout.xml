@@ -84,7 +84,7 @@
         android:layout_marginTop="8dp"
         android:drawablePadding="10dp"
         android:text="@string/_0000"
-        app:drawableLeftCompat="@drawable/outline_thumb_up_24"
+        app:drawableLeftCompat="@drawable/dislike"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
 

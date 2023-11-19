@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aspire.ishow.Model.FeedsModel;
 import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -46,6 +48,8 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
         Picasso.get().load(model.getPostImage())
                 .placeholder(R.drawable.profileplaceholder)
                 .into(holder.feeds_post_iv);
+
+        holder.feeds_like_tv.setText(model.getPostLike() + "");
         String description = model.getPostDescription();
         if(description.equals("")) {
             holder.feeds_description_tv.setVisibility(View.GONE);
@@ -53,6 +57,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
             holder.feeds_description_tv.setText(model.getPostDescription());
             holder.feeds_description_tv.setVisibility(View.VISIBLE  );
         }
+
 
 
         FirebaseDatabase.getInstance().getReference().child("Users")
@@ -73,6 +78,44 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
                     }
                 });
 
+        FirebaseDatabase.getInstance().getReference().child("posts")
+                        .child(model.getPostId()).child("likes")
+                        .child(FirebaseAuth.getInstance().getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            holder.feeds_like_tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like,0,0,0);
+
+                        }else{
+                            holder.feeds_like_tv.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    FirebaseDatabase.getInstance().getReference().child("posts")
+                                            .child(model.getPostId()).child("likes")
+                                            .child(FirebaseAuth.getInstance().getUid()).setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void unused) {
+                                                    FirebaseDatabase.getInstance().getReference().child("posts")
+                                                            .child(model.getPostId()).child("postLike")
+                                                            .setValue(model.getPostLike() + 1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void unused) {
+                                                                    holder.feeds_like_tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like,0,0,0);
+                                                                }
+                                                            });
+                                                }
+                                            });
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
     }
 
@@ -84,7 +127,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
     public static class viewholder extends RecyclerView.ViewHolder{
 
         ImageView feeds_image_dp,feeds_post_iv,feeds_savepost_iv,feeds_more_iv;
-        TextView feeds_username, feeds_profession,feeds_like_iv,feeds_comment_iv,feeds_share_iv,feeds_description_tv;
+        TextView feeds_username, feeds_profession,feeds_like_tv,feeds_comment_tv,feeds_share_tv,feeds_description_tv;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
@@ -95,9 +138,9 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
             feeds_more_iv = itemView.findViewById(R.id.feeds_more_iv);
             feeds_username = itemView.findViewById(R.id.feeds_username);
             feeds_profession = itemView.findViewById(R.id.feeds_profession);
-            feeds_like_iv = itemView.findViewById(R.id.feeds_like_iv);
-            feeds_comment_iv = itemView.findViewById(R.id.feeds_comment_iv);
-            feeds_share_iv = itemView.findViewById(R.id.feeds_share_iv);
+            feeds_like_tv = itemView.findViewById(R.id.feeds_like_iv);
+            feeds_comment_tv = itemView.findViewById(R.id.feeds_comment_iv);
+            feeds_share_tv = itemView.findViewById(R.id.feeds_share_iv);
             feeds_description_tv = itemView.findViewById(R.id.feeds_description_tv);
 
         }

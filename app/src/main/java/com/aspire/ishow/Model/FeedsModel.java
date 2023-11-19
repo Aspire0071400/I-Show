@@ -3,6 +3,15 @@ package com.aspire.ishow.Model;
 public class FeedsModel {
     private String postId,postedBy,postImage,postDescription;
     private long postedAt;
+    private int postLike;
+
+    public int getPostLike() {
+        return postLike;
+    }
+
+    public void setPostLike(int postLike) {
+        this.postLike = postLike;
+    }
 
     public String getPostId() {
         return postId;
