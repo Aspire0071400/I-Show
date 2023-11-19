@@ -19,4 +19,6 @@
     <string name="already_have_an_account_logim">Already have an Account? <b>Login</b></string>
     <string name="profession">Profession</string>
     <string name="follow">FOLLOW</string>
+    <string name="_0000">0000</string>
+    <string name="username">Username</string>
 </resources>

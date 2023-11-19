@@ -1,5 +1,6 @@
 package com.aspire.ishow.Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,20 +13,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.aspire.ishow.Model.FeedsModel;
 import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+
+import java.util.Date;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -40,6 +49,8 @@ public class UploadFragment extends Fragment {
     Uri uri;
     FirebaseAuth auth;
     FirebaseDatabase db;
+    FirebaseStorage storage;
+    ProgressDialog load;
 
     public UploadFragment(){
     //Default constructor.
@@ -50,13 +61,20 @@ public class UploadFragment extends Fragment {
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseDatabase.getInstance();
+        storage = FirebaseStorage.getInstance();
+        load = new ProgressDialog(getContext());
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_upload, container, false);
+
+        load.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        load.setTitle("Posting");
+        load.setMessage("Please Wait....");
+        load.setCancelable(false);
+        load.setCanceledOnTouchOutside(false);
 
         upload_pic_iv = view.findViewById(R.id.upload_pic_iv);
         upload_name_tv = view.findViewById(R.id.upload_name_tv);
@@ -117,6 +135,36 @@ public class UploadFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                load.show();
+                final StorageReference reference = storage.getReference().child("posts")
+                        .child(FirebaseAuth.getInstance().getUid())
+                        .child(new Date().getTime()+"");
+
+                reference.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        reference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                FeedsModel feed = new FeedsModel();
+                                feed.setPostImage(uri.toString());
+                                feed.setPostedBy(FirebaseAuth.getInstance().getUid());
+                                feed.setPostDescription(upload_description_edt.getText().toString());
+                                feed.setPostedAt(new Date().getTime());
+
+                                db.getReference().child("posts")
+                                        .push()
+                                        .setValue(feed).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void unused) {
+                                                load.dismiss();
+                                                Toast.makeText(getContext(),"success",Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                            }
+                        });
+                    }
+                });
             }
         });
 
@@ -127,6 +175,7 @@ public class UploadFragment extends Fragment {
                 i.setAction(Intent.ACTION_GET_CONTENT);
                 i.setType("image/*");
                 startActivityForResult(i,10);
+
 
             }
         });

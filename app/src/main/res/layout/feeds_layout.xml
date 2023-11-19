@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Username"
+        android:text="@string/username"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -44,7 +44,7 @@
         android:id="@+id/feeds_profession"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profession, Bio"
+        android:text="@string/profession"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@+id/feeds_username"
         app:layout_constraintTop_toBottomOf="@+id/feeds_username" />
@@ -83,7 +83,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:drawablePadding="10dp"
-        android:text="0000"
+        android:text="@string/_0000"
         app:drawableLeftCompat="@drawable/outline_thumb_up_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
@@ -95,7 +95,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:drawablePadding="10dp"
-        android:text="0000"
+        android:text="@string/_0000"
         app:drawableLeftCompat="@drawable/outline_comment_24"
         app:layout_constraintStart_toEndOf="@+id/feeds_like_iv"
         app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
@@ -107,7 +107,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:drawablePadding="10dp"
-        android:text="0000"
+        android:text="@string/_0000"
         app:drawableLeftCompat="@drawable/outline_ios_share_24"
         app:layout_constraintStart_toEndOf="@+id/feeds_comment_iv"
         app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
@@ -116,8 +116,20 @@
         android:id="@+id/view3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feeds_description_tv" />
+
+    <TextView
+        android:id="@+id/feeds_description_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black"
+        android:textStyle="italic"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feeds_comment_iv" />
 

@@ -11,7 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aspire.ishow.Model.FeedsModel;
+import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,6 +25,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
 
     ArrayList<FeedsModel> feedList;
     Context context;
+
 
     public FeedsAdapter(ArrayList<FeedsModel> feedList, Context context) {
         this.feedList = feedList;
@@ -36,13 +43,36 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         FeedsModel  model = feedList.get(position);
-        holder.feeds_image_dp.setImageResource(model.getProfileDp());
-        holder.feeds_username.setText(model.getUsername());
-        holder.feeds_post_iv.setImageResource(model.getPostImage());
-        holder.feeds_like_iv.setText(model.getLikes());
-        holder.feeds_comment_iv.setText(model.getComment());
-        holder.feeds_share_iv.setText(model.getShare());
-        holder.feeds_profession.setText(model.getProfession());
+        Picasso.get().load(model.getPostImage())
+                .placeholder(R.drawable.profileplaceholder)
+                .into(holder.feeds_post_iv);
+        String description = model.getPostDescription();
+        if(description.equals("")) {
+            holder.feeds_description_tv.setVisibility(View.GONE);
+        }else {
+            holder.feeds_description_tv.setText(model.getPostDescription());
+            holder.feeds_description_tv.setVisibility(View.VISIBLE  );
+        }
+
+
+        FirebaseDatabase.getInstance().getReference().child("Users")
+                .child(model.getPostedBy()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User user = snapshot.getValue(User.class);
+                        Picasso.get().load(user.getProfile()).placeholder(R.drawable.profileplaceholder).into(holder.feeds_image_dp);
+
+                        holder.feeds_username.setText(user.getName());
+                        holder.feeds_profession.setText(user.getProfession());
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
 
     }
 
@@ -51,10 +81,10 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
         return feedList.size();
     }
 
-    public class viewholder extends RecyclerView.ViewHolder{
+    public static class viewholder extends RecyclerView.ViewHolder{
 
         ImageView feeds_image_dp,feeds_post_iv,feeds_savepost_iv,feeds_more_iv;
-        TextView feeds_username, feeds_profession,feeds_like_iv,feeds_comment_iv,feeds_share_iv;
+        TextView feeds_username, feeds_profession,feeds_like_iv,feeds_comment_iv,feeds_share_iv,feeds_description_tv;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
@@ -68,6 +98,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
             feeds_like_iv = itemView.findViewById(R.id.feeds_like_iv);
             feeds_comment_iv = itemView.findViewById(R.id.feeds_comment_iv);
             feeds_share_iv = itemView.findViewById(R.id.feeds_share_iv);
+            feeds_description_tv = itemView.findViewById(R.id.feeds_description_tv);
 
         }
     }

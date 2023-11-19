@@ -1,87 +1,57 @@
 package com.aspire.ishow.Model;
 
 public class FeedsModel {
-    int profileDp,postImage,save;
-    String username;
-    String profession;
-    String likes;
-    String comment;
+    private String postId,postedBy,postImage,postDescription;
+    private long postedAt;
 
-    public int getProfileDp() {
-        return profileDp;
+    public String getPostId() {
+        return postId;
     }
 
-    public void setProfileDp(int profileDp) {
-        this.profileDp = profileDp;
+    public void setPostId(String postId) {
+        this.postId = postId;
     }
 
-    public int getPostImage() {
+    public String getPostedBy() {
+        return postedBy;
+    }
+
+    public void setPostedBy(String postedBy) {
+        this.postedBy = postedBy;
+    }
+
+    public String getPostImage() {
         return postImage;
     }
 
-    public void setPostImage(int postImage) {
+    public void setPostImage(String postImage) {
         this.postImage = postImage;
     }
 
-    public int getSave() {
-        return save;
+    public String getPostDescription() {
+        return postDescription;
     }
 
-    public void setSave(int save) {
-        this.save = save;
+    public void setPostDescription(String postDescription) {
+        this.postDescription = postDescription;
     }
 
-    public String getUsername() {
-        return username;
+    public long getPostedAt() {
+        return postedAt;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setPostedAt(long postedAt) {
+        this.postedAt = postedAt;
     }
 
-    public String getProfession() {
-        return profession;
+    public FeedsModel() {
     }
 
-    public void setProfession(String profession) {
-        this.profession = profession;
-    }
-
-    public String getLikes() {
-        return likes;
-    }
-
-    public void setLikes(String likes) {
-        this.likes = likes;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public String getShare() {
-        return share;
-    }
-
-    public void setShare(String share) {
-        this.share = share;
-    }
-
-    String share;
-
-    public FeedsModel(int profileDp, int postImage, int save, String username,
-                      String profession, String likes, String comment, String share) {
-        this.profileDp = profileDp;
+    public FeedsModel(String postId, String postedBy, String postImage, String postDescription, long postedAt) {
+        this.postId = postId;
+        this.postedBy = postedBy;
         this.postImage = postImage;
-        this.save = save;
-        this.username = username;
-        this.profession = profession;
-        this.likes = likes;
-        this.comment = comment;
-        this.share = share;
+        this.postDescription = postDescription;
+        this.postedAt = postedAt;
     }
 }
