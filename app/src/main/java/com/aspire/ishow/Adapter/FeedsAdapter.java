@@ -1,6 +1,7 @@
 package com.aspire.ishow.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aspire.ishow.CommentActivity;
 import com.aspire.ishow.Model.FeedsModel;
 import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
@@ -57,7 +59,6 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
             holder.feeds_description_tv.setText(model.getPostDescription());
             holder.feeds_description_tv.setVisibility(View.VISIBLE  );
         }
-
 
 
         FirebaseDatabase.getInstance().getReference().child("Users")
@@ -115,7 +116,16 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
 
                     }
                 });
-
+        holder.feeds_comment_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, CommentActivity.class);
+                i.putExtra("postId",model.getPostId());
+                i.putExtra("postedBy",model.getPostedBy());
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
 
     }
 
