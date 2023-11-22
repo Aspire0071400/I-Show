@@ -2,12 +2,15 @@ package com.aspire.ishow;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.aspire.ishow.Adapter.CommentsAdapter;
 import com.aspire.ishow.Model.CommentsModel;
 import com.aspire.ishow.Model.FeedsModel;
 import com.aspire.ishow.Model.User;
@@ -20,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CommentActivity extends AppCompatActivity {
@@ -31,6 +35,7 @@ public class CommentActivity extends AppCompatActivity {
     String postId,postedBy;
     FirebaseAuth auth;
     FirebaseDatabase db;
+    ArrayList<CommentsModel> commentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,10 @@ public class CommentActivity extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         postId = i.getStringExtra("postId");
         postedBy = i.getStringExtra("postedBy");
+
+        setSupportActionBar(binding.toolbar2);
+        CommentActivity.this.setTitle("Comments");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         db.getReference().child("posts")
@@ -127,6 +136,37 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
+        CommentsAdapter adapter = new CommentsAdapter(this,commentList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        binding.commentsRecycler.setLayoutManager(linearLayoutManager);
+        binding.commentsRecycler.setAdapter(adapter);
 
+        db.getReference().child("posts")
+                .child(postId)
+                .child("comments")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        commentList.clear();
+                        for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            CommentsModel commentsModel = dataSnapshot.getValue(CommentsModel.class);
+                            commentList.add(commentsModel);
+
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 }

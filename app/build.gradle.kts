@@ -44,6 +44,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-storage")
     implementation("com.squareup.picasso:picasso:2.8")
+    implementation ("com.github.marlonlom:timeago:4.0.3")
 
 
     testImplementation("junit:junit:4.13.2")
