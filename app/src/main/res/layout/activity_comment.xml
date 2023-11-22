@@ -48,7 +48,7 @@
                 app:layout_constraintStart_toStartOf="@+id/comments_post_iv" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/comments_username_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="47dp"
@@ -69,13 +69,12 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:text="TextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/comments_post_iv" />
 
             <TextView
-                android:id="@+id/comments_like_iv"
+                android:id="@+id/comments_like_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -87,28 +86,28 @@
                 app:layout_constraintTop_toBottomOf="@id/comments_description_tv" />
 
             <TextView
-                android:id="@+id/comments_comment_iv"
+                android:id="@+id/comments_comment_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:drawablePadding="10dp"
                 android:text="@string/_0000"
                 app:drawableLeftCompat="@drawable/outline_comment_24"
-                app:layout_constraintBottom_toBottomOf="@+id/comments_like_iv"
-                app:layout_constraintStart_toEndOf="@+id/comments_like_iv"
-                app:layout_constraintTop_toTopOf="@+id/comments_like_iv" />
+                app:layout_constraintBottom_toBottomOf="@+id/comments_like_tv"
+                app:layout_constraintStart_toEndOf="@+id/comments_like_tv"
+                app:layout_constraintTop_toTopOf="@+id/comments_like_tv" />
 
             <TextView
-                android:id="@+id/comments_share_iv"
+                android:id="@+id/comments_share_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:drawablePadding="10dp"
                 android:text="@string/_0000"
                 app:drawableLeftCompat="@drawable/outline_ios_share_24"
-                app:layout_constraintBottom_toBottomOf="@+id/comments_comment_iv"
-                app:layout_constraintStart_toEndOf="@+id/comments_comment_iv"
-                app:layout_constraintTop_toTopOf="@+id/comments_comment_iv" />
+                app:layout_constraintBottom_toBottomOf="@+id/comments_comment_tv"
+                app:layout_constraintStart_toEndOf="@+id/comments_comment_tv"
+                app:layout_constraintTop_toTopOf="@+id/comments_comment_tv" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comments_recycler"
@@ -118,7 +117,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/comments_like_iv" />
+                app:layout_constraintTop_toBottomOf="@+id/comments_like_tv" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -4,6 +4,15 @@ public class FeedsModel {
     private String postId,postedBy,postImage,postDescription;
     private long postedAt;
     private int postLike;
+    private int commentCount;
+
+    public int getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(int commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public int getPostLike() {
         return postLike;

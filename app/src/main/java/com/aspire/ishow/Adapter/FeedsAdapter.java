@@ -52,6 +52,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
                 .into(holder.feeds_post_iv);
 
         holder.feeds_like_tv.setText(model.getPostLike() + "");
+        holder.feeds_comment_tv.setText(model.getCommentCount()+"");
         String description = model.getPostDescription();
         if(description.equals("")) {
             holder.feeds_description_tv.setVisibility(View.GONE);
