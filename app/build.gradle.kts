@@ -34,17 +34,22 @@ android {
 
 dependencies {
 
+
+    implementation("com.github.sharish:ShimmerRecyclerView:v1.3")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation(platform("com.google.firebase:firebase-bom:32.5.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-database")
     implementation ("com.google.firebase:firebase-core:21.1.1")
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-storage")
-    implementation("com.squareup.picasso:picasso:2.8")
+    implementation("com.squareup.picasso:picasso:2.71828")
     implementation ("com.github.marlonlom:timeago:4.0.3")
+    implementation("com.github.3llomi:CircularStatusView:V1.0.3")
+    implementation("com.github.OMARIHAMZA:StoryView:1.0.2-alpha")
+
 
 
     testImplementation("junit:junit:4.13.2")

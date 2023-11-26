@@ -83,7 +83,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:drawablePadding="10dp"
-        android:text="@string/_0000"
+        android:ems="4"
         app:drawableLeftCompat="@drawable/dislike"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
@@ -95,7 +95,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:drawablePadding="10dp"
-        android:text="@string/_0000"
+        android:ems="4"
         app:drawableLeftCompat="@drawable/outline_comment_24"
         app:layout_constraintStart_toEndOf="@+id/feeds_like_iv"
         app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
@@ -104,11 +104,11 @@
         android:id="@+id/feeds_share_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:drawablePadding="10dp"
-        android:text="@string/_0000"
-        app:drawableLeftCompat="@drawable/outline_ios_share_24"
+        android:ems="4"
+        app:drawableLeftCompat="@drawable/baseline_share_24"
         app:layout_constraintStart_toEndOf="@+id/feeds_comment_iv"
         app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
 

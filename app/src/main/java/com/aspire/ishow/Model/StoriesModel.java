@@ -1,45 +1,36 @@
 package com.aspire.ishow.Model;
 
+import java.util.ArrayList;
+
 public class StoriesModel {
-    int story,storyType,profileDP;
-    String usersname;
+    private String storyBy;
+    private long storyAt;
+    ArrayList<StoryViewModel> stories;
 
-    public int getStory() {
-        return story;
+    public StoriesModel() {
     }
 
-    public void setStory(int story) {
-        this.story = story;
+    public String getStoryBy() {
+        return storyBy;
     }
 
-    public int getStoryType() {
-        return storyType;
+    public void setStoryBy(String storyBy) {
+        this.storyBy = storyBy;
     }
 
-    public void setStoryType(int storyType) {
-        this.storyType = storyType;
+    public long getStoryAt() {
+        return storyAt;
     }
 
-    public int getProfileDP() {
-        return profileDP;
+    public void setStoryAt(long storyAt) {
+        this.storyAt = storyAt;
     }
 
-    public void setProfileDP(int profileDP) {
-        this.profileDP = profileDP;
+    public ArrayList<StoryViewModel> getStories() {
+        return stories;
     }
 
-    public String getUsersname() {
-        return usersname;
-    }
-
-    public void setUsersname(String usersname) {
-        this.usersname = usersname;
-    }
-
-    public StoriesModel(int story, int storyType, int profileDP, String usersname) {
-        this.story = story;
-        this.storyType = storyType;
-        this.profileDP = profileDP;
-        this.usersname = usersname;
+    public void setStories(ArrayList<StoryViewModel> stories) {
+        this.stories = stories;
     }
 }

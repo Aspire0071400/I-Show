@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/feeds_image_dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/Shimmer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/feeds_username"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:background="@color/Shimmer"
+        app:layout_constraintBottom_toBottomOf="@+id/feeds_image_dp"
+        app:layout_constraintStart_toEndOf="@+id/feeds_image_dp"
+        app:layout_constraintTop_toTopOf="@+id/feeds_image_dp"
+        app:layout_constraintVertical_bias="0.100000024" />
+
+    <View
+        android:id="@+id/feeds_profession"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:background="@color/Shimmer"
+        android:text="@string/profession"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="@+id/feeds_username"
+        app:layout_constraintTop_toBottomOf="@+id/feeds_username" />
+
+    <View
+        android:id="@+id/feeds_post_iv"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/Shimmer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feeds_profession" />
+
+    <View
+        android:id="@+id/feeds_like_iv"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/Shimmer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feeds_post_iv" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/Shimmer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feeds_description_tv" />
+
+    <View
+        android:id="@+id/feeds_description_tv"
+        android:layout_width="200dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/Shimmer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feeds_like_iv" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,6 @@
     <color name="transparentgrey">#60353535</color>
     <color name="textback">#D9D9F8</color>
     <color name="toolbarBack">#F2ECF6</color>
+    <color name="storyRing">#6878FB</color>
+    <color name="Shimmer">#EAEAEA</color>
 </resources>

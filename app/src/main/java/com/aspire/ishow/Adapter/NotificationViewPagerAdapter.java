@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
 import com.aspire.ishow.Fragments.NotificationSwitchFragment;
 import com.aspire.ishow.Fragments.RequestSwitchFragment;
 
@@ -18,7 +19,7 @@ public class NotificationViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 1:return new RequestSwitchFragment();
-            case 0:
+            case 0:return new NotificationSwitchFragment();
             default:return new NotificationSwitchFragment();
         }
     }
