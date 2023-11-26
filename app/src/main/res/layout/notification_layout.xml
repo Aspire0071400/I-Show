@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/openNotifier"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="#DADADA">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/notification_dp"
@@ -21,9 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/user_mentioned_you_in_a_comment"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/notification_dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/notification_dp"
@@ -34,7 +34,7 @@
         android:id="@+id/notification_time_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="just now"
+        android:text="time"
         app:layout_constraintStart_toStartOf="@+id/notification_mention_tv"
         app:layout_constraintTop_toBottomOf="@+id/notification_mention_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

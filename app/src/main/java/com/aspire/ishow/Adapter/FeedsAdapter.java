@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aspire.ishow.CommentActivity;
 import com.aspire.ishow.Model.FeedsModel;
+import com.aspire.ishow.Model.NotificationModel;
 import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
 
@@ -103,6 +105,19 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.viewholder>{
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
                                                                     holder.feeds_like_tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like,0,0,0);
+
+                                                                    NotificationModel notificationModel = new NotificationModel();
+                                                                    notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                    notificationModel.setNotificationAt(new Date().getTime());
+                                                                    notificationModel.setPostId(model.getPostId());
+                                                                    notificationModel.setPostId(model.getPostedBy());
+                                                                    notificationModel.setType("like");
+
+                                                                    FirebaseDatabase.getInstance().getReference()
+                                                                            .child("notification")
+                                                                            .child(model.getPostedBy()).push()
+                                                                            .setValue(notificationModel);
+
                                                                 }
                                                             });
                                                 }

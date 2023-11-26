@@ -1,38 +1,72 @@
 package com.aspire.ishow.Fragments;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.aspire.ishow.Adapter.NotificationViewPagerAdapter;
-import com.aspire.ishow.R;
-import com.google.android.material.tabs.TabLayout;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.aspire.ishow.Adapter.NotificationAdapter;
+import com.aspire.ishow.Model.NotificationModel;
+import com.aspire.ishow.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
 
 public class NotificationFragment extends Fragment {
-
-    ViewPager notificationViewPager;
-    TabLayout notificationTabLayout;
+    RecyclerView notificationSwitchRv;
+    ArrayList<NotificationModel> notifyList;
+    FirebaseDatabase db;
     public NotificationFragment(){
-        // Required Constructor.
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        db = FirebaseDatabase.getInstance();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
-        notificationTabLayout = view.findViewById(R.id.notification_tab_layout);
-        notificationViewPager = view.findViewById(R.id.notification_view_pager);
+        notificationSwitchRv = view.findViewById(R.id.notification_switch_rv);
 
-        notificationViewPager.setAdapter(new NotificationViewPagerAdapter(getFragmentManager()));
+        notifyList = new ArrayList<>();
 
-        notificationTabLayout.setupWithViewPager(notificationViewPager);
+        NotificationAdapter adapter = new NotificationAdapter(notifyList,getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false);
+        notificationSwitchRv.setLayoutManager(linearLayoutManager);
+        notificationSwitchRv.setAdapter(adapter);
+
+        db.getReference().child("notification")
+                .child(FirebaseAuth.getInstance().getUid())
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                            NotificationModel notificationModel = dataSnapshot.getValue(NotificationModel.class);
+                            notificationModel.setPostId(dataSnapshot.getKey());
+                            notifyList.add(notificationModel);
+                        }
+                        adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
 
         return view;
     }

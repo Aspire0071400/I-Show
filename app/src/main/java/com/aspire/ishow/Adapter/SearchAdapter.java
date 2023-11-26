@@ -14,6 +14,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.aspire.ishow.Model.HomiesModel;
+import com.aspire.ishow.Model.NotificationModel;
 import com.aspire.ishow.Model.User;
 import com.aspire.ishow.R;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -93,6 +94,16 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.viewHolder
                                                             holder.searchFollowBtn.setTextColor(context.getResources().getColor(R.color.grey));
                                                             holder.searchFollowBtn.setEnabled(false);
                                                             Toast.makeText(context,"You Followed" +user.getName(),Toast.LENGTH_SHORT).show();
+
+                                                            NotificationModel notificationModel = new NotificationModel();
+                                                            notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                            notificationModel.setNotificationAt(new Date().getTime());
+                                                            notificationModel.setType("follow");
+
+                                                            FirebaseDatabase.getInstance().getReference()
+                                                                    .child("notification")
+                                                                    .child(user.getUserID())
+                                                                    .push().setValue(notificationModel);
 
                                                         }
                                                     });

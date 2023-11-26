@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.aspire.ishow.Adapter.CommentsAdapter;
 import com.aspire.ishow.Model.CommentsModel;
 import com.aspire.ishow.Model.FeedsModel;
+import com.aspire.ishow.Model.NotificationModel;
 import com.aspire.ishow.Model.User;
 import com.aspire.ishow.databinding.ActivityCommentBinding;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,11 +59,11 @@ public class CommentActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         FeedsModel post = snapshot.getValue(FeedsModel.class);
-                        assert post != null;
                         Picasso.get()
                                 .load(post.getPostImage())
                                 .placeholder(R.drawable.coverplaceholder)
                                 .into(binding.commentsPostIv);
+
                         binding.commentsDescriptionTv.setText(post.getPostDescription());
                         binding.commentsLikeTv.setText(post.getPostLike()+"");
                         binding.commentsCommentTv.setText(post.getCommentCount()+"");
@@ -122,6 +123,19 @@ public class CommentActivity extends AppCompatActivity {
                                                             public void onSuccess(Void unused) {
                                                                 binding.commentsEdt.setText("");
                                                                 Toast.makeText(CommentActivity.this, "Commented", Toast.LENGTH_SHORT).show();
+
+                                                                NotificationModel notificationModel = new NotificationModel();
+                                                                notificationModel.setNotificationBy(FirebaseAuth.getInstance().getUid());
+                                                                notificationModel.setNotificationAt(new Date().getTime());
+                                                                notificationModel.setPostId(postId);
+                                                                notificationModel.setPostedBy(postedBy);
+                                                                notificationModel.setType("comment");
+
+                                                                FirebaseDatabase.getInstance().getReference()
+                                                                        .child("notification")
+                                                                        .child(postedBy)
+                                                                        .push().setValue(notificationModel);
+
                                                             }
                                                         });
                                             }
